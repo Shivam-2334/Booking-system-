@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #ff7f00;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #e66d00;
+    }
+  </style>
+</head>
+<body>
+  <form id="bookingForm">
+    <h2>Book Your Appointment</h2>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="text" id="service" placeholder="Service Type" required>
+    <input type="date" id="date" required>
+    <input type="time" id="time" required>
+    <textarea id="message" placeholder="Additional Message"></textarea>
+    <button type="button" onclick="sendWhatsApp()">Submit</button>
+  </form>
+
+  <script>
+    function sendWhatsApp() {
+      const name = document.getElementById('name').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const message = document.getElementById('message').value;
+
+      // 🔁 Replace this number with your (or client’s) WhatsApp number
+      const phone = "919076697387";
+
+      const text = `📅 *New Appointment Request*%0A
+Name: ${name}%0A
+Service: ${service}%0A
+Date: ${date}%0A
+Time: ${time}%0A
+Message: ${message}`;
+
+      const url = `https://wa.me/${phone}?text=${text}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
